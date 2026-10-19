@@ -1,27 +1,5 @@
+import { wizards, addWizard, filterBy } from "./repository.js";
 
-interface Wizard {
-  id: number;
-  name: string;
-  house: string;
-}
-
-type NewWizard = Omit<Wizard, "id">;
-
-const wizards: Wizard[] = [];
-
-function addWizard(data: NewWizard): Wizard {
-  const id = wizards.length + 1;
-
-  const wizard: Wizard = {
-    id: id,
-    name: data.name,
-    house: data.house
-  };
-
-  wizards.push(wizard);
-
-  return wizard;
-}
 
 const wizard1 = addWizard({
   name: "Harry Potter",
@@ -33,4 +11,21 @@ const wizard2 = addWizard({
   house: "Gryffindor"
 });
 
+const wizard3 = addWizard({
+  name: "Draco Malfoy",
+  house: "Slytherin"
+});
+
+const wizard4 = addWizard({
+  name: "Luna Lovegood",
+  house: "Ravenclaw"
+});
+
+console.log("Tous les sorciers :");
 console.log(wizards);
+
+//
+const gryffindors = filterBy(wizards, "house", "Gryffindor");
+
+console.log("Sorciers de Gryffindor :");
+console.log(gryffindors);
